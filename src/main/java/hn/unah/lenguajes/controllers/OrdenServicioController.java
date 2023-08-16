@@ -1,4 +1,4 @@
-package hn.unah.lenguajes.controllers;
+/*package hn.unah.lenguajes.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,4 +44,4 @@ public class OrdenServicioController {
 		return impl.buscarOrdenServicioPorId(id);
 	}
 	
-}
+*/

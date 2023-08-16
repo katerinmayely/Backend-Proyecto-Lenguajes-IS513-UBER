@@ -24,20 +24,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="cliente")
+@Table(name="clientes")
 public class Cliente {
 	
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="idcliente")
-    private int idcliente;
+    private String correo;
     
     @Column(name="tarjetavinculada")
     private String tarjetaVinculada;
     
-	@OneToOne(mappedBy="cliente")
-	@JsonIgnore
-	private Persona persona;
+    private String nombre;
+    
+    private String apellido;
+    
+    private String contrasenia;
+    
+    private String celular;
     
 	@OneToMany(mappedBy="cliente")
 	private List<Calificacion> calificaciones;

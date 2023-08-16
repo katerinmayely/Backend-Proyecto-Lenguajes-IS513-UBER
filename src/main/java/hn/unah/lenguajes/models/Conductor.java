@@ -39,6 +39,10 @@ public class Conductor {
 	  @Column(name="cargos")
 	  private String cargos;
 	  
+	  private String nombre;
+	  
+	  private String apellido;
+	  
 	  @Column(name="salario")
 	  private double salario;
 	  
@@ -48,13 +52,9 @@ public class Conductor {
 	  @OneToOne(mappedBy = "conductor")
 	  @JsonIgnore
 	  private Automovil automovil;
-	  
-	  @OneToOne(mappedBy="conductor")
-	  @JsonIgnore
-	  private Persona persona;
-
+	
 	  @OneToMany(mappedBy="conductor")
-		private List<Calificacion> calificaciones;
+	  private List<Calificacion> calificaciones;
 	  
 	  @OneToMany(mappedBy="conductor")
 	  private List<ViajeOrdenServicio> viajes;	  

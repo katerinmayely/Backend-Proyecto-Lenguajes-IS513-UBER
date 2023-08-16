@@ -36,7 +36,7 @@ public class Calificacion {
 	  	
 		@JsonIgnore
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name="idcliente", referencedColumnName="idcliente")
+		@JoinColumn(name="correocliente", referencedColumnName="correo")
 		private Cliente cliente;
 		
 		@JsonIgnore

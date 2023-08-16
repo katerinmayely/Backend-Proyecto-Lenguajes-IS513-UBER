@@ -34,11 +34,11 @@ public class OrdenServicio {
     @Column(name="idordenservicio")
     private int idOrdenServicio;
 	  	  
-	@Column(name="iddireccioninicial")
-    private int idDireccionInicial;
+	@Column(name="idubicacioninicial")
+    private int idUbicacionInicial;
 	  
-	@Column(name="iddireccionfinal")
-	private int idDireccionFinal;
+	@Column(name="idubicacionfinal")
+	private int idUbicacionFinal;
 	  
 	@Column(name="tipopago")
 	private String tipoPago;
@@ -56,12 +56,7 @@ public class OrdenServicio {
 		
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="idcliente", referencedColumnName="idcliente")
+	@JoinColumn(name="correocliente", referencedColumnName="correo")
 	private Cliente cliente;
-		
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="iddireccion", referencedColumnName="iddireccion")
-	private Direccion direcciones;
 	  
 }

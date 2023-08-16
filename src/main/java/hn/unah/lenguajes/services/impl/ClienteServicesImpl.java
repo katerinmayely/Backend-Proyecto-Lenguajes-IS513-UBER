@@ -3,6 +3,8 @@ package hn.unah.lenguajes.services.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import hn.unah.lenguajes.dto.DatosCliente;
 import hn.unah.lenguajes.models.Cliente;
 import hn.unah.lenguajes.repositories.ClientesRepository;
 import hn.unah.lenguajes.services.ClienteServices;
@@ -20,9 +22,8 @@ public class ClienteServicesImpl implements ClienteServices{
 	}
 
 	@Override
-	public Cliente buscarClientePorId(int id) {
-		// TODO Auto-generated method stub
-		return repo.findById(id).orElse(null);
+	public Cliente buscarClientePorCorreo(String correo) {
+		return repo.findById(correo).orElse(null);
 	}
 
 	@Override
@@ -33,20 +34,35 @@ public class ClienteServicesImpl implements ClienteServices{
 	}
 
 	@Override
-	public Cliente eliminarCliente(int id) {
-		repo.deleteById(id);
+	public Cliente eliminarCliente(String correo) {
+		repo.deleteById(correo);
 		return null;
 	}
 
 	@Override
-	public Cliente actualizarCliente(int id, Cliente cliente) {
-		Cliente nvoCliente=repo.findById(id).get();
+	public Cliente actualizarCliente(String correo, Cliente cliente) {
+		Cliente nvoCliente=repo.findById(correo).get();
 		nvoCliente.setTarjetaVinculada(cliente.getTarjetaVinculada());
 		nvoCliente.setUbicacion(cliente.getUbicacion());
 		nvoCliente.setTarjetaVinculada(cliente.getTarjetaVinculada());
-		repo.deleteById(id);
+		repo.deleteById(correo);
 		repo.save(nvoCliente);
 		return cliente;
+	}
+
+	@Override
+	public boolean validarCiente(DatosCliente datos) {
+		
+		if(repo.existsById(datos.getCorreo())) {
+			Cliente cliente = repo.findById(datos.getCorreo()).orElse(null);
+			
+			if(cliente.getContrasenia().equals(datos.getContrasenia())) {
+				return true;
+			}
+			
+			return false;
+		}
+		return false;
 	}
 	
 }
