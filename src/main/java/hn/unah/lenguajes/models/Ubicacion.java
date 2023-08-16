@@ -42,11 +42,11 @@ public class Ubicacion {
 	@OneToOne(mappedBy="ubicacion")
 	private Automovil automovil;
 	
-	/*@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
 	private OrdenServicio partida;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
-	private OrdenServicio destino;*/
+	private OrdenServicio destino;
 }
