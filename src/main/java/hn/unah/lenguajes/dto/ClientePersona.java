@@ -1,5 +1,6 @@
 package hn.unah.lenguajes.dto;
 
+import hn.unah.lenguajes.models.Ubicacion;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class ClientePersona {
 	private String dni;
-	private String coordenada;
+	private Ubicacion coordenada;
 	private String tarjeta;
 	
 }

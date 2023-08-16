@@ -42,7 +42,7 @@ public class CalificacionServicesImpl implements CalificacionServices{
 		nvaCalificacion.setCalificacionDeServicio(calificacion.getCalificacionDeServicio());
 		nvaCalificacion.setComentario(calificacion.getComentario());
 		nvaCalificacion.setCliente(calificacion.getCliente());
-		nvaCalificacion.setConductores(calificacion.getConductores());
+		nvaCalificacion.setConductor(calificacion.getConductor());
 		
 		repo.deleteById(id);
 		repo.save(nvaCalificacion);

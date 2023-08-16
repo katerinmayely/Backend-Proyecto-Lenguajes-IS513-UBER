@@ -3,7 +3,8 @@ package hn.unah.lenguajes.repositories;
 import org.springframework.data.repository.CrudRepository;
 
 import hn.unah.lenguajes.models.Direccion;
+import hn.unah.lenguajes.models.Ubicacion;
 
-public interface DireccionesRepository extends CrudRepository<Direccion, Integer>{
+public interface UbicacionesRepository extends CrudRepository<Ubicacion, Integer>{
 
 }

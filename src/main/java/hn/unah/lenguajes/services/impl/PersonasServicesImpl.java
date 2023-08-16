@@ -61,7 +61,7 @@ public class PersonasServicesImpl implements PersonaServices{
 			nvoConductor.setFecha_ingreso(conductorPersona.getFechaIngreso());
 			nvoConductor.setCargos(conductorPersona.getCargo());
 			nvoConductor.setSalario(conductorPersona.getSalario());
-			persona.setConductores(nvoConductor);
+			persona.setConductor(nvoConductor);
 			repo.save(persona);
 			
 			return persona;}
@@ -76,7 +76,7 @@ public class PersonasServicesImpl implements PersonaServices{
 	
 			Persona persona=repo.findById(clientePersona.getDni()).get();
 			Cliente nvoCliente=new Cliente();
-			nvoCliente.setCoordenadascliente(clientePersona.getCoordenada());
+			nvoCliente.setUbicacion(clientePersona.getCoordenada());
 			nvoCliente.setTarjetaVinculada(clientePersona.getTarjeta());
 			persona.setCliente(nvoCliente);
 			repo.save(persona);

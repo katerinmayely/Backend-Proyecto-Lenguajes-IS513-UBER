@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Table(name="calificacion")
 public class Calificacion {
 
-	  @Id
+	   @Id
 	    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	    @Column(name="idcalificacion")
 	    private int idCalificacion;
@@ -41,6 +41,6 @@ public class Calificacion {
 		
 		@JsonIgnore
 		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name="idconductores", referencedColumnName="idconductores")
-		private Conductor conductores;
+		@JoinColumn(name="idconductor", referencedColumnName="idconductor")
+		private Conductor conductor;
 }

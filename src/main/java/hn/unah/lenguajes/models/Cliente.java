@@ -3,11 +3,13 @@ package hn.unah.lenguajes.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,13 +31,9 @@ public class Cliente {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idcliente")
     private int idcliente;
-  
     
     @Column(name="tarjetavinculada")
     private String tarjetaVinculada;
-
-    @Column(name="coordenadascliente")
-    private String coordenadascliente;
     
 	@OneToOne(mappedBy="cliente")
 	@JsonIgnore
@@ -47,4 +45,6 @@ public class Cliente {
 	@OneToMany(mappedBy="cliente")
 	private List<OrdenServicio> orden_servicio;
 
+	@OneToOne(mappedBy="cliente")
+	private Ubicacion ubicacion;
 }

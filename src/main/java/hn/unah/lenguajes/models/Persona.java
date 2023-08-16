@@ -54,7 +54,7 @@ public class Persona {
 	private Cliente cliente;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idconductores", referencedColumnName="idconductores")
-	private Conductor conductores;
+	@JoinColumn(name="idconductor", referencedColumnName="idconductor")
+	private Conductor conductor;
 	  
 }

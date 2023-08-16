@@ -29,8 +29,8 @@ public class Conductor {
 
 	  @Id
 	  @GeneratedValue(strategy=GenerationType.IDENTITY)
-	  @Column(name="idconductores")
-	  private int idconductores;
+	  @Column(name="idconductor")
+	  private int idconductor;
 	
 	  @Temporal(TemporalType.DATE)
 	  @Column(name="fecha_ingreso")
@@ -45,17 +45,17 @@ public class Conductor {
 	  @Column(name="calificacion")
 	  private double calificacion;
 	  
-	  @OneToOne(mappedBy = "conductores")
+	  @OneToOne(mappedBy = "conductor")
 	  @JsonIgnore
 	  private Automovil automovil;
 	  
-	  @OneToOne(mappedBy="conductores")
+	  @OneToOne(mappedBy="conductor")
 	  @JsonIgnore
 	  private Persona persona;
 
-	  @OneToMany(mappedBy="conductores")
+	  @OneToMany(mappedBy="conductor")
 		private List<Calificacion> calificaciones;
 	  
-	  @OneToMany(mappedBy="conductores")
-	  private List<ViajeOrdenServicio> viaje;	  
+	  @OneToMany(mappedBy="conductor")
+	  private List<ViajeOrdenServicio> viajes;	  
 }

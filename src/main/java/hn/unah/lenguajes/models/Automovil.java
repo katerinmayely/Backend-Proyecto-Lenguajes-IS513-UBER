@@ -35,13 +35,15 @@ public class Automovil {
 	@Column(name="tipocombustible")
   	private String tipocombustible;
 	
-	@Column(name="coordenadasauto")
-  	private String coordenadasauto;
-	
 	@Column(name="disponibilidad")
   	private boolean disponibilidad;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idconductores", referencedColumnName="idconductores")
-	private Conductor conductores;
+	@JoinColumn(name="idconductor", referencedColumnName="idconductor")
+	private Conductor conductor;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
+	private Ubicacion ubicacion;
+	
 }

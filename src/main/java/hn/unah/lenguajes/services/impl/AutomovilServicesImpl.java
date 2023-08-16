@@ -40,7 +40,7 @@ public class AutomovilServicesImpl implements AutomovilServices{
 				&& datos.getDobleAirbag() == 1 && datos.getPermiso() == 1 && datos.getMatricula() != null) {
 			
 			Automovil nvoAutomovil = new Automovil(datos.getMatricula(), datos.getModelo(), datos.getMarca(), 
-					datos.getColor(), datos.getTipoCombustible(), null, true, null);
+					datos.getColor(), datos.getTipoCombustible(), true, null, null);
 		
 			repo.save(nvoAutomovil);
 			return true;
@@ -59,11 +59,11 @@ public class AutomovilServicesImpl implements AutomovilServices{
 	public Automovil actualizarAutomovil(String id, Automovil automovil) {
 		Automovil automovilViejo=repo.findById(id).get();
 		automovilViejo.setColor(automovil.getColor());
-		automovilViejo.setConductores(automovil.getConductores());
+		automovilViejo.setConductor(automovil.getConductor());
 		automovilViejo.setModelo(automovil.getModelo());
 		automovilViejo.setMarca(automovil.getMarca());
 		automovilViejo.setTipocombustible(automovil.getTipocombustible());
-		automovilViejo.setCoordenadasauto(automovil.getCoordenadasauto());
+		automovilViejo.setUbicacion(automovil.getUbicacion());
 		automovilViejo.setDisponibilidad(automovil.isDisponibilidad());
 		repo.deleteById(id);
 		repo.save(automovilViejo);
@@ -75,8 +75,8 @@ public class AutomovilServicesImpl implements AutomovilServices{
 		Conductor conductor=repoC.findById(autoC.getIdConductor()).get();
 		Automovil auto=new Automovil();
 		auto.setColor(autoC.getColor());
-		auto.setConductores(conductor);
-		auto.setCoordenadasauto(autoC.getCoordenadasAuto());
+		auto.setConductor(conductor);
+		auto.setUbicacion(autoC.getCoordenadasAuto());
 		auto.setMarca(autoC.getMarca());
 		auto.setTipocombustible(autoC.getTipoCombustible());
 		auto.setModelo(autoC.getModelo());

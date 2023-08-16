@@ -47,7 +47,7 @@ public class ViajeOrdenServicio {
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="	idconductores", referencedColumnName="	idconductores")
-	private Conductor conductores;
+	@JoinColumn(name="idconductor", referencedColumnName="idconductor")
+	private Conductor conductor;
  
 }

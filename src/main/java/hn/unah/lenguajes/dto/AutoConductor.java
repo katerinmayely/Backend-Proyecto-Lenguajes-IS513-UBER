@@ -1,5 +1,6 @@
 package hn.unah.lenguajes.dto;
 
+import hn.unah.lenguajes.models.Ubicacion;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,6 @@ public class AutoConductor {
 	String marca;
 	String color;
 	String tipoCombustible;
-	String coordenadasAuto;
+	Ubicacion coordenadasAuto;
 	Boolean disponibilidad;
 }
