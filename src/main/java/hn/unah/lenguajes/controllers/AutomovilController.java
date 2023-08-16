@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hn.unah.lenguajes.dto.AutoConductor;
+import hn.unah.lenguajes.dto.NuevoAutomovil;
 import hn.unah.lenguajes.models.Automovil;
 import hn.unah.lenguajes.services.impl.AutomovilServicesImpl;
 
@@ -25,8 +26,8 @@ public class AutomovilController {
 	}
 	
 	@PostMapping("/crear")
-	public Automovil crearAutomovil(@RequestBody Automovil automovil) {
-		return impl.crearAutomovil(automovil);
+	public boolean agregarAutomovil(@RequestBody NuevoAutomovil datos) {
+		return impl.agregarAutomovil(datos);
 	}
 	
 	@PostMapping("/actualizar/{id}")

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hn.unah.lenguajes.dto.AutoConductor;
+import hn.unah.lenguajes.dto.NuevoAutomovil;
 import hn.unah.lenguajes.models.Automovil;
 import hn.unah.lenguajes.models.Conductor;
 import hn.unah.lenguajes.repositories.AutomovilesRepository;
@@ -33,9 +34,19 @@ public class AutomovilServicesImpl implements AutomovilServices{
 	}
 
 	@Override
-	public Automovil crearAutomovil(Automovil automovil) {
-		repo.save(automovil);
-		return automovil;
+	public boolean agregarAutomovil(NuevoAutomovil datos) {
+		
+		if(datos.getAniosAntiguedad() >= 10 && datos.getCuatroPuertas() == 1 && datos.getAire() == 1 
+				&& datos.getDobleAirbag() == 1 && datos.getPermiso() == 1 && datos.getMatricula() != null) {
+			
+			Automovil nvoAutomovil = new Automovil(datos.getMatricula(), datos.getModelo(), datos.getMarca(), 
+					datos.getColor(), datos.getTipoCombustible(), null, true, null);
+		
+			repo.save(nvoAutomovil);
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
