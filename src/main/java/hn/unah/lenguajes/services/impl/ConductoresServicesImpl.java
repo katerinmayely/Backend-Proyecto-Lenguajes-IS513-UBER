@@ -1,9 +1,27 @@
 package hn.unah.lenguajes.services.impl;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import hn.unah.lenguajes.dto.NuevoConductor;
+import hn.unah.lenguajes.models.Automovil;
+import hn.unah.lenguajes.models.Calificacion;
 import hn.unah.lenguajes.models.Conductor;
+import hn.unah.lenguajes.models.ViajeOrdenServicio;
 import hn.unah.lenguajes.repositories.ConductoresRepository;
 import hn.unah.lenguajes.services.ConductorServices;
 
@@ -25,9 +43,26 @@ public class ConductoresServicesImpl implements ConductorServices{
 	}
 
 	@Override
-	public Conductor crearConductores(Conductor conductor) {
-		repo.save(conductor);
-		return conductor;
+	public boolean contratarConductor(NuevoConductor infoConductor) {
+
+		if(infoConductor.getConDni() == 1 && infoConductor.getLicenciaValida() == 1 &&
+				infoConductor.getPermisoCirculacion() == 1 && infoConductor.getTelefonoValido() == 1 && infoConductor.getEdad() >= 23) {
+			
+			Date fechaIngreso = new Date();
+			
+			Conductor nvoConductor = new Conductor();
+			nvoConductor.setNombre(infoConductor.getNombre());
+			nvoConductor.setApellido(infoConductor.getApellido());
+			nvoConductor.setTelefono(infoConductor.getCelular());
+			nvoConductor.setCorreo(infoConductor.getCorreo());
+			nvoConductor.setFecha_ingreso(fechaIngreso);
+			repo.save(nvoConductor);
+			
+			return true;
+		}
+		
+		
+		return false;
 	}
 
 	@Override
@@ -41,8 +76,6 @@ public class ConductoresServicesImpl implements ConductorServices{
 		Conductor nvoConductor=repo.findById(id).get();
 	
 		nvoConductor.setFecha_ingreso(conductor.getFecha_ingreso());
-		nvoConductor.setCargos(conductor.getCargos());
-		nvoConductor.setSalario(conductor.getSalario());
 		nvoConductor.setCalificacion(conductor.getCalificacion());
 		repo.deleteById(id);
 		repo.save(nvoConductor);

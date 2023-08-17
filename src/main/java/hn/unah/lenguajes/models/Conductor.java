@@ -36,15 +36,13 @@ public class Conductor {
 	  @Column(name="fecha_ingreso")
 	  private Date fecha_ingreso;
 	  
-	  @Column(name="cargos")
-	  private String cargos;
-	  
 	  private String nombre;
 	  
 	  private String apellido;
 	  
-	  @Column(name="salario")
-	  private double salario;
+	  private String correo;
+	  
+	  private String telefono;
 	  
 	  @Column(name="calificacion")
 	  private double calificacion;

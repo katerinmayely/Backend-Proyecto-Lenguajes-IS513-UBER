@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hn.unah.lenguajes.dto.NuevoConductor;
 import hn.unah.lenguajes.models.Conductor;
 import hn.unah.lenguajes.services.impl.ConductoresServicesImpl;
 
@@ -23,9 +24,9 @@ public class ConductoresController {
 		return listaConductores;
 	}
 	
-	@PostMapping("/crear")
-	public Conductor crearConductores(@RequestBody Conductor conductor) {
-		return impl.crearConductores(conductor);
+	@PostMapping("/contratar")
+	public boolean contratarConductor(@RequestBody NuevoConductor info) {
+		return impl.contratarConductor(info);
 	}
 	
 	@PostMapping("/actualizar/{id}")
