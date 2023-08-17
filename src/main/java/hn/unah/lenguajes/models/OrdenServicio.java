@@ -46,7 +46,7 @@ public class OrdenServicio {
 	private String tipoPago;
 	  
 	@Column(name="status_orden")
-	private String status_orden;
+	private int status_orden;
 	  
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_y_hora_orden")
