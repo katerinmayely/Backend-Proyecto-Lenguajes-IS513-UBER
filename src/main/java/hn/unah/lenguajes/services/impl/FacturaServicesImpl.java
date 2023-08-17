@@ -1,10 +1,15 @@
 package hn.unah.lenguajes.services.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import hn.unah.lenguajes.dto.InfoFactura;
 import hn.unah.lenguajes.models.Factura;
+import hn.unah.lenguajes.models.ViajeOrdenServicio;
 import hn.unah.lenguajes.repositories.FacturasRepository;
+import hn.unah.lenguajes.repositories.ViajeOrdenServicioRepository;
 import hn.unah.lenguajes.services.FacturaServices;
 
 @Service
@@ -12,6 +17,9 @@ public class FacturaServicesImpl implements FacturaServices{
 	
 	@Autowired 
 	private FacturasRepository repo;
+	
+	@Autowired
+	private ViajeOrdenServicioRepository repoV;
 
 	@Override
 	public List<Factura> obtenerFacturaes() {
@@ -25,8 +33,18 @@ public class FacturaServicesImpl implements FacturaServices{
 	}
 
 	@Override
-	public Factura crearFactura(Factura factura) {
+	public Factura crearFactura(InfoFactura infoFactura) {
+		Date fecha=new Date();
+		
+		double subtotal=infoFactura.getMonto();
+		double impuesto=0.15*subtotal;//0.15
+		double descuento=0.05*subtotal;//0.05
+		double totalAPagar=subtotal+impuesto-descuento;
+	    ViajeOrdenServicio viaje=infoFactura.getViaje();
+		Factura factura=new Factura(0, fecha, subtotal, impuesto, descuento, totalAPagar, viaje);
 		repo.save(factura);
+		viaje.setFactura(factura);
+		repoV.save(viaje);
 		return factura;
 	}
 
@@ -47,5 +65,11 @@ public class FacturaServicesImpl implements FacturaServices{
 		repo.deleteById(id);
 		repo.save(nvaFactura);
 		return factura;
+	}
+
+	@Override
+	public Factura crearFactura(Factura factura) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

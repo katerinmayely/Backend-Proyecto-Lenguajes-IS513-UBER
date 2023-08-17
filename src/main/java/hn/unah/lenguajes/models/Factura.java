@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,19 +36,20 @@ public class Factura {
 	private Date FechaDeEmision;
 	 
 	@Column(name="subtotal")
-	private int subtotal;
+	private double subtotal;
 	 
 	@Column(name="impuesto")
-	private int impuesto;
+	private double impuesto;
 	 
 	@Column(name="descuento")
-	private int descuento;
+	private double descuento;
 	 
 	@Column(name="totalpagar")
-	private int totalPagar;
+	private double totalPagar;
 	 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idviaje", referencedColumnName="idviaje")
+	
+	@OneToOne(mappedBy="factura")
+	@JsonIgnore
 	private ViajeOrdenServicio viaje;
 	  
 }

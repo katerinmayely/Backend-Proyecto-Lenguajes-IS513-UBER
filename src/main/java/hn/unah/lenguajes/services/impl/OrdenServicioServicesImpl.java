@@ -80,7 +80,7 @@ public class OrdenServicioServicesImpl implements OrdenServicioServices{
 		double monto=tarifaPorMinuto*tiempo+info.getDistanciaMinima()*tarifaPorKm;
 		
 		
-	    InfoServicio infoServicio=new InfoServicio(info.getAutomovil().getConductor().getNombre(), tiempo, monto);
+	    InfoServicio infoServicio=new InfoServicio(info.getAutomovil().getConductor().getNombre(), tiempo, monto, nvoViaje);
 	    return infoServicio;
 			
 		

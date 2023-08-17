@@ -1,6 +1,8 @@
 package hn.unah.lenguajes.services;
 
 import java.util.List;
+
+import hn.unah.lenguajes.dto.InfoFactura;
 import hn.unah.lenguajes.models.Factura;
 
 public interface FacturaServices {
@@ -9,4 +11,5 @@ public interface FacturaServices {
 	public Factura crearFactura(Factura factura);
 	public Factura eliminarFactura(int id);
 	public Factura actualizarFactura(int id, Factura factura);
+	Factura crearFactura(InfoFactura infoFactura);
 }
