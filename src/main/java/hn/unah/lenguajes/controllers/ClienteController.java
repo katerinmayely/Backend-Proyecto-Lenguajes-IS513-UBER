@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes.dto.DatosCliente;
+import hn.unah.lenguajes.dto.NuevoUsuario;
 import hn.unah.lenguajes.models.Cliente;
 import hn.unah.lenguajes.services.impl.ClienteServicesImpl;
 
@@ -32,7 +33,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/crear")
-	public Cliente crearCliente(@RequestBody Cliente cliente) {
+	public boolean crearCliente(@RequestBody NuevoUsuario cliente) {
 		return impl.crearCliente(cliente);
 	}
 	

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import hn.unah.lenguajes.dto.DatosCliente;
+import hn.unah.lenguajes.dto.NuevoUsuario;
 import hn.unah.lenguajes.models.Cliente;
 import hn.unah.lenguajes.repositories.ClientesRepository;
 import hn.unah.lenguajes.services.ClienteServices;
@@ -27,10 +28,15 @@ public class ClienteServicesImpl implements ClienteServices{
 	}
 
 	@Override
-	public Cliente crearCliente(Cliente Cliente) {
-		// TODO Auto-generated method stub
-		repo.save(Cliente);
-		return Cliente;
+	public boolean crearCliente(NuevoUsuario datos) {
+		
+		if(datos.getContrasenia().equals(datos.getContraseniaValidacion())){
+			Cliente nvoCliente = new Cliente(datos.getCorreo(), null, datos.getNombre(), datos.getApellido(), datos.getContrasenia(), datos.getCelular(), null, null, null);
+			repo.save(nvoCliente);
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
