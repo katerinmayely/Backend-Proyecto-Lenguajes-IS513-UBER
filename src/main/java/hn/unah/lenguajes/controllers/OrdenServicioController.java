@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hn.unah.lenguajes.dto.InfoServicio;
 import hn.unah.lenguajes.dto.SolicitudViaje;
 import hn.unah.lenguajes.models.OrdenServicio;
 import hn.unah.lenguajes.services.impl.OrdenServicioServicesImpl;
@@ -28,7 +29,7 @@ public class OrdenServicioController {
 	}
 	
 	@PostMapping("/crear")
-	public OrdenServicio crearOrden_Servicio(@RequestBody SolicitudViaje solicitud) {
+	public InfoServicio crearOrden_Servicio(@RequestBody SolicitudViaje solicitud) {
 		return impl.crearOrdenServicio(solicitud);
 	}
 }

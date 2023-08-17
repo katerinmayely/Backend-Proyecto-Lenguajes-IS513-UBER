@@ -1,6 +1,8 @@
 package hn.unah.lenguajes.services;
 
 import java.util.List;
+
+import hn.unah.lenguajes.dto.ViajeServicio;
 import hn.unah.lenguajes.models.ViajeOrdenServicio;
 
 public interface ViajeOrdenServicioServices {
@@ -9,4 +11,5 @@ public interface ViajeOrdenServicioServices {
 	public ViajeOrdenServicio crearViajeOrdenServicio(ViajeOrdenServicio Viaje_Orden_Servicio);
 	public ViajeOrdenServicio eliminarViaje_Orden_Servicio(int id);
 	public ViajeOrdenServicio actualizarViaje_Orden_Servicio(int id, ViajeOrdenServicio viaje);
+	public ViajeOrdenServicio crearViajeOrdenServicio(ViajeServicio viaje);
 }

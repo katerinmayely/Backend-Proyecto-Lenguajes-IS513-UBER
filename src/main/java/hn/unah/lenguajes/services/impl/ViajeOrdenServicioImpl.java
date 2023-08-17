@@ -1,9 +1,16 @@
 package hn.unah.lenguajes.services.impl;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import hn.unah.lenguajes.dto.ViajeServicio;
+import hn.unah.lenguajes.models.Automovil;
+import hn.unah.lenguajes.models.OrdenServicio;
 import hn.unah.lenguajes.models.ViajeOrdenServicio;
+import hn.unah.lenguajes.repositories.AutomovilesRepository;
+import hn.unah.lenguajes.repositories.OrdenServicioRepository;
 import hn.unah.lenguajes.repositories.ViajeOrdenServicioRepository;
 import hn.unah.lenguajes.services.ViajeOrdenServicioServices;
 
@@ -11,6 +18,15 @@ import hn.unah.lenguajes.services.ViajeOrdenServicioServices;
 public class ViajeOrdenServicioImpl implements ViajeOrdenServicioServices{
 	@Autowired
 	private ViajeOrdenServicioRepository repo;
+	
+	@Autowired
+	private AutomovilesRepository autoA;
+	
+	@Autowired
+	private OrdenServicioRepository repoO;
+	
+	@Autowired
+	private ViajeOrdenServicioRepository repoV;
 	
 	@Override
 	public List<ViajeOrdenServicio> obtenerViajeOrdenServicio() {
@@ -23,9 +39,19 @@ public class ViajeOrdenServicioImpl implements ViajeOrdenServicioServices{
 	}
 
 	@Override
-	public ViajeOrdenServicio crearViajeOrdenServicio(ViajeOrdenServicio viaje) {
-		repo.save(viaje);
-		return viaje;
+	public ViajeOrdenServicio crearViajeOrdenServicio(ViajeServicio viaje) {
+		
+		ViajeOrdenServicio nvoViaje=new ViajeOrdenServicio();
+		int idordenservicio=viaje.getIdordenservicio();
+		String placa=viaje.getPlaca();
+		nvoViaje.setConductor(autoA.findById(placa).get().getConductor());
+		nvoViaje.setFecha_y_hora_viaje(new Date());
+		nvoViaje.setOrden_servicio(repoO.findById(idordenservicio).get());
+		repoV.save(nvoViaje);
+		return nvoViaje;
+		
+
+	
 	}
 
 	@Override
@@ -41,6 +67,12 @@ public class ViajeOrdenServicioImpl implements ViajeOrdenServicioServices{
 		repo.deleteById(id);
 		repo.save(nvaViaje_Orden_Servicio);
 		return viaje;
+	}
+
+	@Override
+	public ViajeOrdenServicio crearViajeOrdenServicio(ViajeOrdenServicio Viaje_Orden_Servicio) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

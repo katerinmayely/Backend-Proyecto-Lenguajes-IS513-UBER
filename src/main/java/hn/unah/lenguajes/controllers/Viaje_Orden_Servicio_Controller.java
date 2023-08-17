@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import hn.unah.lenguajes.dto.ViajeServicio;
 import hn.unah.lenguajes.models.ViajeOrdenServicio;
 import hn.unah.lenguajes.services.impl.ViajeOrdenServicioImpl;
 
@@ -24,7 +26,7 @@ public class Viaje_Orden_Servicio_Controller {
 	}
 	
 	@PostMapping("/crear")
-	public ViajeOrdenServicio crearViaje_Orden_Servicio(@RequestBody ViajeOrdenServicio viaje) {
+	public ViajeOrdenServicio crearViaje_Orden_Servicio(@RequestBody ViajeServicio viaje) {
 		return impl.crearViajeOrdenServicio(viaje);
 	}
 	
