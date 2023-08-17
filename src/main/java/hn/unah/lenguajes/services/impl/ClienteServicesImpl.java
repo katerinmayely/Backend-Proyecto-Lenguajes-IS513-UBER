@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import hn.unah.lenguajes.dto.DatosCliente;
 import hn.unah.lenguajes.dto.NuevoUsuario;
 import hn.unah.lenguajes.models.Cliente;
+import hn.unah.lenguajes.models.PerfilFacebook;
 import hn.unah.lenguajes.repositories.ClientesRepository;
+import hn.unah.lenguajes.repositories.PerfilFacebookRepository;
 import hn.unah.lenguajes.services.ClienteServices;
 
 @Service
@@ -15,6 +17,9 @@ public class ClienteServicesImpl implements ClienteServices{
 	
 	@Autowired
 	private ClientesRepository repo;
+	
+	@Autowired
+	private PerfilFacebookRepository repoP;
 	
 	@Override
 	public List<Cliente> obtenerClientes() {
@@ -31,7 +36,7 @@ public class ClienteServicesImpl implements ClienteServices{
 	public boolean crearCliente(NuevoUsuario datos) {
 		
 		if(datos.getContrasenia().equals(datos.getContraseniaValidacion())){
-			Cliente nvoCliente = new Cliente(datos.getCorreo(), null, datos.getNombre(), datos.getApellido(), datos.getContrasenia(), datos.getCelular(), null, null, null);
+			Cliente nvoCliente = new Cliente(datos.getCorreo(), null, datos.getNombre(), datos.getApellido(), datos.getContrasenia(), datos.getCelular(), null, null, null, null);
 			repo.save(nvoCliente);
 			return true;
 		}
@@ -56,17 +61,26 @@ public class ClienteServicesImpl implements ClienteServices{
 		return cliente;
 	}
 
-	@Override
+	@Override //Para Iniciar Sesión
 	public boolean validarCiente(DatosCliente datos) {
 		
+		//Ingresar por perfil
+		List<PerfilFacebook> perfilesExistentes = (List<PerfilFacebook>) repoP.findAll();
+		for(PerfilFacebook perfil: perfilesExistentes) {
+			if(perfil.getUsuario().equals(datos.getCorreo()) && perfil.getCliente() != null) {
+				if(perfil.getContrasenia().equals(datos.getContrasenia())) {
+					return true;
+				}
+			}
+		}
+		
+		//Ingresar por cuenta en UBER
 		if(repo.existsById(datos.getCorreo())) {
 			Cliente cliente = repo.findById(datos.getCorreo()).orElse(null);
 			
 			if(cliente.getContrasenia().equals(datos.getContrasenia())) {
 				return true;
 			}
-			
-			return false;
 		}
 		return false;
 	}

@@ -46,6 +46,9 @@ public class Cliente {
 	
 	@OneToMany(mappedBy="cliente")
 	private List<OrdenServicio> orden_servicio;
+	
+	@OneToMany(mappedBy="cliente")
+	private List<PerfilFacebook> perfiles;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
