@@ -47,6 +47,7 @@ public class Cliente {
 	@OneToMany(mappedBy="cliente")
 	private List<OrdenServicio> orden_servicio;
 
-	@OneToOne(mappedBy="cliente")
-	private Ubicacion ubicacion;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
+	private Ubicacion ubicacionCliente;
 }

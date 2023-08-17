@@ -33,12 +33,14 @@ public class OrdenServicio {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idordenservicio")
     private int idOrdenServicio;
-	  	  
-	@Column(name="idubicacioninicial")
-    private int idUbicacionInicial;
+	  	 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idubicacioninicial", referencedColumnName="idubicacion")
+    private Ubicacion ubicacionInicial;
 	  
-	@Column(name="idubicacionfinal")
-	private int idUbicacionFinal;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idubicacionfinal", referencedColumnName="idubicacion")
+    private Ubicacion ubicacionFinal;
 	  
 	@Column(name="tipopago")
 	private String tipoPago;

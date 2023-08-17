@@ -34,19 +34,19 @@ public class Ubicacion {
 	
 	private double longitud;
 	
+	@OneToOne(mappedBy="ubicacionCliente")
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
 	private Cliente cliente;
 	
 	@OneToOne(mappedBy="ubicacion")
+	@JsonIgnore
 	private Automovil automovil;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
+	@OneToOne(mappedBy="ubicacionInicial")
+	@JsonIgnore
 	private OrdenServicio partida;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idubicacion", referencedColumnName="idubicacion")
+
+	@OneToOne(mappedBy="ubicacionFinal")
+	@JsonIgnore
 	private OrdenServicio destino;
 }

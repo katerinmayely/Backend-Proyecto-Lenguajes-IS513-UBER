@@ -43,7 +43,7 @@ public class ClienteServicesImpl implements ClienteServices{
 	public Cliente actualizarCliente(String correo, Cliente cliente) {
 		Cliente nvoCliente=repo.findById(correo).get();
 		nvoCliente.setTarjetaVinculada(cliente.getTarjetaVinculada());
-		nvoCliente.setUbicacion(cliente.getUbicacion());
+		nvoCliente.setUbicacionCliente(cliente.getUbicacionCliente());
 		nvoCliente.setTarjetaVinculada(cliente.getTarjetaVinculada());
 		repo.deleteById(correo);
 		repo.save(nvoCliente);
