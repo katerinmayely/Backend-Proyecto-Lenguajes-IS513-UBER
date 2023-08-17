@@ -2,6 +2,7 @@ package hn.unah.lenguajes.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,8 +42,8 @@ public class ViajeOrdenServicio {
 	@JsonIgnore
 	private OrdenServicio orden_servicio;
 		
-	@OneToOne(mappedBy="viaje")
-	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="idviaje", referencedColumnName="idviaje")
 	private Factura factura;
 
 	@JsonIgnore

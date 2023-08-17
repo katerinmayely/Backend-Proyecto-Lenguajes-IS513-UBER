@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import hn.unah.lenguajes.dto.InfoFactura;
 import hn.unah.lenguajes.models.Factura;
 import hn.unah.lenguajes.services.impl.FacturaServicesImpl;
 
@@ -23,8 +25,8 @@ public class FacturaController {
 	}
 	
 	@PostMapping("/crear")
-	public Factura crearFactura(@RequestBody Factura automovil) {
-		return impl.crearFactura(automovil);
+	public Factura crearFactura(@RequestBody InfoFactura infoFactura) {
+		return impl.crearFactura(infoFactura);
 	}
 	
 	@PostMapping("/actualizar/{id}")
