@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import hn.unah.lenguajes.dto.DatosCliente;
 import hn.unah.lenguajes.dto.NuevoUsuario;
 import hn.unah.lenguajes.models.Cliente;
+import hn.unah.lenguajes.models.OrdenServicio;
 import hn.unah.lenguajes.models.PerfilFacebook;
 import hn.unah.lenguajes.repositories.ClientesRepository;
 import hn.unah.lenguajes.repositories.PerfilFacebookRepository;
@@ -27,11 +28,14 @@ public class ClienteServicesImpl implements ClienteServices{
 		
 	}
 
+	
 	@Override
 	public Cliente buscarClientePorCorreo(String correo) {
 		return repo.findById(correo).orElse(null);
 	}
 
+	
+	
 	@Override
 	public boolean crearCliente(NuevoUsuario datos) {
 		
@@ -83,6 +87,13 @@ public class ClienteServicesImpl implements ClienteServices{
 			}
 		}
 		return false;
+	}
+
+
+	@Override
+	public List<OrdenServicio> obtenerOrdenes(String correo) {
+		// TODO Auto-generated method stub
+		return repo.findById(correo).get().getOrden_servicio();
 	}
 	
 }

@@ -1,5 +1,8 @@
 package hn.unah.lenguajes.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import hn.unah.lenguajes.dto.DatosCliente;
 import hn.unah.lenguajes.dto.NuevoUsuario;
 import hn.unah.lenguajes.models.Cliente;
+import hn.unah.lenguajes.models.OrdenServicio;
+import hn.unah.lenguajes.models.ViajeOrdenServicio;
 import hn.unah.lenguajes.services.impl.ClienteServicesImpl;
 
 @RestController
@@ -35,6 +40,14 @@ public class ClienteController {
 	@PostMapping("/crear")
 	public boolean crearCliente(@RequestBody NuevoUsuario cliente) {
 		return impl.crearCliente(cliente);
+	}
+	
+	@GetMapping("/obtenerOrdenes/{correo}")
+	public List<OrdenServicio> obtenerOrdenes(@PathVariable String correo){
+		
+		
+	   
+	     return impl.obtenerOrdenes(correo);
 	}
 	
 	@PostMapping("/actualizar/{id}")
